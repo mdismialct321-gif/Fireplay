@@ -17,7 +17,7 @@ jobs:
         run: |
           if [ -f lib/main.dart ]; then cp lib/main.dart /tmp/my.dart; fi
       - name: Create project
-        run: flutter create --project-name fireplay --org com.fireplay.app --platforms android.
+        run: flutter create --project-name fireplay --org com.fireplay.app --platforms android .
       - name: Restore our code
         run: |
           if [ -f /tmp/my.dart ]; then cp /tmp/my.dart lib/main.dart; fi
