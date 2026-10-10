@@ -11,17 +11,19 @@ jobs:
           java-version: '17'
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.22.0'
+          flutter-version: '3.24.5'
+          channel: 'stable'
       - name: Save our code
         run: |
-          if [ -f lib/main.dart ]; then mv lib/main.dart /tmp/my.dart; fi
+          if [ -f lib/main.dart ]; then cp lib/main.dart /tmp/my.dart; fi
       - name: Create project
-        run: flutter create --project-name fireplay --org com.fireplay.app .
+        run: flutter create --project-name fireplay --org com.fireplay.app --platforms android.
       - name: Restore our code
         run: |
-          if [ -f /tmp/my.dart ]; then mv /tmp/my.dart lib/main.dart; fi
+          if [ -f /tmp/my.dart ]; then cp /tmp/my.dart lib/main.dart; fi
       - name: Add packages
-        run: flutter pub add http cached_network_image youtube_player_flutter
+        run: |
+          flutter pub add http cached_network_image youtube_player_flutter
       - name: Build APK
         run: flutter build apk --release
       - uses: actions/upload-artifact@v4
