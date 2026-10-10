@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -64,37 +63,4 @@ class _FirePlayState extends State<FirePlay> {
               var v = videos[i];
               return ListTile(
                 leading: CachedNetworkImage(imageUrl: "https://i.ytimg.com/vi/${v['videoId']}/mqdefault.jpg", width: 100, fit: BoxFit.cover),
-                title: Text(v['title'] ?? '', style: TextStyle(color: Colors.white), maxLines: 2),
-                subtitle: Text(v['author'] ?? '', style: TextStyle(color: Colors.white54)),
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (_)=> PlayPage(id: v['videoId'], title: v['title'])));
-                },
-              );
-            },
-          ),
-        )
-      ]),
-    );
-  }
-}
-
-class PlayPage extends StatefulWidget {
-  final String id; final String title;
-  PlayPage({required this.id, required this.title});
-  @override _PlayPageState createState() => _PlayPageState();
-}
-class _PlayPageState extends State<PlayPage> {
-  late YoutubePlayerController _controller;
-  @override
-  void initState() {
-    super.initState();
-    _controller = YoutubePlayerController(initialVideoId: widget.id, flags: YoutubePlayerFlags(autoPlay: true, mute: false));
-  }
-  @override Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(backgroundColor: Colors.redAccent, title: Text(widget.title, maxLines: 1, style: TextStyle(fontSize: 16))),
-      body: YoutubePlayer(controller: _controller, showVideoProgressIndicator: true),
-    );
-  }
-}
+                
