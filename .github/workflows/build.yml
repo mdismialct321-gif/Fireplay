@@ -13,7 +13,7 @@ jobs:
         with:
           flutter-version: '3.24.0'
           channel: 'stable'
-      - run: flutter create. --project-name fireplay --org com.fireplay.app --platforms android
+      - run: flutter create . --project-name fireplay --org com.fireplay.app --platforms android
       - run: flutter pub add http cached_network_image youtube_player_flutter
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
